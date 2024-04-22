@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-receiver-{{ topic }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-receiver-{{ topic }}
+  template:
+    metadata:
+      labels:
+        app: data-receiver-{{ topic }}
+    spec:
+      containers:
+      - name: data-receiver
+        image: your-docker-image-for-data-receiver
+        args: ["{{ topic }}"]
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"

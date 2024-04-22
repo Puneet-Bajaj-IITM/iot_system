@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-receiver
+spec:
+  replicas: 1 # Start with 1 replica
+  selector:
+    matchLabels:
+      app: data-receiver
+  template:
+    metadata:
+      labels:
+        app: data-receiver
+    spec:
+      containers:
+      - name: data-receiver
+        image: your-docker-image-for-data-receiver
+        command: ["python", "data_receiver.py", "iot"] # Default topic
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"

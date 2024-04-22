@@ -1,0 +1,11 @@
+Please copy and paste above commands-
+
+in one terminal
+docker run -d -p 9092:9092 apache/kafka
+python .\interoperable_layer\manager\manager.py <topic>
+
+After some time in 2nd terminal use
+python .\interoperable_layer\kafka_to_db\kaf_to_db.py <topic>
+
+and in 3rd terminal to view data recieved
+python view_data.py <topic>
